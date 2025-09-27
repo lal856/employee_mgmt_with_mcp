@@ -1,7 +1,7 @@
 from google import genai
 from google.genai import types
 
-from emp_mgmt_operations import add_employee
+from emp_mgmt_operations import add_employee, list_employees
 
 # Define the function declaration for the model
 add_employee_function = {
@@ -30,12 +30,16 @@ add_employee_function = {
         "required": ["emp_name", "emp_role", "emp_city", "emp_pincode"],
     },
 }
-        
-        
+
+list_employee_function = {
+    "name": "list_employee",
+    "description": "Retrieves a list of all employees from the employee database.",
+    }
+ 
 
 # Configure the client and tools
 client = genai.Client()
-tools = types.Tool(function_declarations=[add_employee_function])
+tools = types.Tool(function_declarations=[add_employee_function, list_employee_function])
 config = types.GenerateContentConfig(tools=[tools])
 
 # Send request with function declarations
@@ -46,13 +50,30 @@ response = client.models.generate_content(
 )
 
 # Check for a function call
-if response.candidates[0].content.parts[0].function_call:
-    function_call = response.candidates[0].content.parts[0].function_call
-    print(f"Function to call: {function_call.name}")
-    print(f"Arguments: {function_call.args}")
-    #  In a real app, you would call your function here:
-    result = add_employee(**function_call.args)
+funct_call = response.candidates[0].content.parts[0].function_call
+if funct_call:
+    print(f"Function to call: {funct_call.name}")
+    print(f"Arguments: {funct_call.args}")
+    result = add_employee(**funct_call.args)
     print(f"Function result: {result}")
+else:
+    print("No function call found in the response.")
+    print(response.text)
+
+# Send request with function declarations
+response = client.models.generate_content(
+    model="gemini-2.5-flash",
+    contents="list all employees.",
+    config=config,
+)
+
+# Check for a function call
+funct_call = response.candidates[0].content.parts[0].function_call
+if funct_call:
+    print(f"Function to call: {funct_call.name}")
+    print(f"Arguments: {funct_call.args}")
+    result = list_employees()
+    print(f"employee list: {result}")
 else:
     print("No function call found in the response.")
     print(response.text)

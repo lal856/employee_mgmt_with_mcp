@@ -25,31 +25,31 @@ def add_employee(emp_name, emp_role, emp_city, emp_pincode):
     employee_database.append(employee)
     return f"Employee added with ID: {emp_id}"
 
-def remove_employee(employee_id):
+def remove_employee(emp_id):
     """
     Removes an employee from the database by their ID.
 
     Args:
-        employee_id (int or str): The unique identifier of the employee to be removed.
+        emp_id (int or str): The unique identifier of the employee to be removed.
 
     Returns:
         str: A confirmation message indicating the employee has been removed.
     """
-   
-    employee_database = [emp for emp in employee_database if emp['id'] != employee_id]
-    return f"Employee with ID {employee_id} removed."
 
-def get_employee(employee_id):
+    employee_database = [emp for emp in employee_database if emp['id'] != emp_id]
+    return f"Employee with ID {emp_id} removed."
+
+def get_employee(emp_id):
     """
     Retrieve an employee's information from the employee database by their ID.
     Args:
-        employee_id (int or str): The unique identifier of the employee to retrieve.
+        emp_id (int or str): The unique identifier of the employee to retrieve.
     Returns:
         dict or None: The employee's information as a dictionary if found, otherwise None.
     """
     
     for emp in employee_database:
-        if emp['id'] == employee_id:
+        if emp['id'] == emp_id:
             return emp
     return None
 
