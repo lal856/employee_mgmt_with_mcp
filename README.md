@@ -114,6 +114,7 @@ Under mcp method we need not to create tools in declarative style (shown in abov
 However, over here we need to just annotate / decorate  the function defination like **@mcp.tool("tool_name")** 
 
 ### code example tool integration with mcp server
+emp_mgmt_operations.py
 
 ```
 # mcp tool defination
@@ -214,4 +215,31 @@ def list_employees():
     """
     return employee_database
 
+```
+
+llm_with_mcp.py
+```
+from emp_mgmt_operations import mcp
+
+# Start the MCP server to expose the tools
+if __name__ == "__main__":
+    mcp.run(transport='stdio')
+```
+
+### mcp server configuration file
+mcp.json
+```
+{
+  "servers": {
+    "emp_mgmt": {
+      "command": "uv",
+       "args": [
+        "--directory",
+        "F:\\coding_education\\model_context_protocol\\employee_mgmt_with_mcp",
+        "run",
+        "llm_with_mcp.py"
+      ]
+    }
+  }
+}
 ```
