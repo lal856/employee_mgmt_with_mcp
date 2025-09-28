@@ -1,0 +1,13 @@
+{
+  "servers": {
+    "emp_mgmt": {
+      "command": "uv",
+       "args": [
+        "--directory",
+        "F:\\coding_education\\model_context_protocol\\employee_mgmt_with_mcp",
+        "run",
+        "llm_with_mcp.py"
+      ]
+    }
+  }
+}
