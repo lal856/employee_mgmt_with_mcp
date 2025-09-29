@@ -1,9 +1,9 @@
-## what is model context protocol (mcp)
+## What is model context protocol (mcp)
 Model Context Protocol (MCP) is a new open standard that defines how applications (like IDEs, chatbots, or other clients) can connect to external tools, data sources, and services in a safe, structured, and interoperable way — so that Large Language Models (LLMs) can use them.
 ![mcp-simple-diagram](https://github.com/user-attachments/assets/a9c5283d-9e2d-4e15-8248-5b0acb7b4bda)
 reference: https://modelcontextprotocol.io/docs/getting-started/intro
 
-## tool integration with LLM (prior mcp)
+## Tool integration with LLM (prior mcp)
 Before MCP, every LLM app had to invent its own way to connect models to:
 
 Databases
@@ -108,8 +108,11 @@ else:
     print("No function call found in the response.")
     print(response.text)
 ```
+### output
+![tools_without_mcp](https://github.com/user-attachments/assets/8580441e-563d-4157-aa3e-54ef673c762e)
 
-## tools integration with LLM (with mcp)
+
+## Tools integration with LLM (with mcp)
 Under mcp method we need not to create tools in declarative style (shown in above code) where we need to prove function descriptions , parameters required by functions.
 However, over here we need to just annotate / decorate  the function defination like **@mcp.tool("tool_name")** 
 
@@ -243,3 +246,7 @@ mcp.json
   }
 }
 ```
+
+### output
+![tools_with_mcp](https://github.com/user-attachments/assets/5e6f15c6-3dbf-4edf-966d-af27d6036428)
+
