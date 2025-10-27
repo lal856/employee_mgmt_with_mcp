@@ -250,3 +250,7 @@ mcp.json
 ### output
 ![tools_with_mcp](https://github.com/user-attachments/assets/5e6f15c6-3dbf-4edf-966d-af27d6036428)
 
+
+### Deploy mcp server in ms copilot
+https://www.cloudfronts.com/copilot/connecting-your-mcp-server-to-microsoft-copilot-studio-part-2/
+
